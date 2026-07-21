@@ -1,0 +1,21 @@
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-bg);
+}
+
+.app__content {
+  text-align: center;
+}
+
+.app__title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-text-bright);
+}
+
+.app__subtitle {
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+}

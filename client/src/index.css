@@ -1,0 +1,37 @@
+/* Global base styles. Colors and fonts come from theme.css tokens.
+   Component-specific styles live in each component's own .css file. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+:where(a) {
+  color: var(--color-accent);
+}
+
+:where(button, input, select, textarea) {
+  font: inherit;
+}
+
+:where(:focus-visible) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
