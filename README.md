@@ -54,7 +54,7 @@ npm run dev            # http://localhost:5173
 
 ## Design system
 
-Color and type tokens live in `client/src/theme.css` as CSS custom properties
+Color and type tokens live in `client/src/globals.css` as CSS custom properties
 (the single source of truth). Colors are the **Lackluster Mint** palette (slate
 `#708090` accent, mint `#789978`, on a `#191919` background); the typeface is
 **JetBrains Mono**, self-hosted via `@fontsource` (no external CDN). Components

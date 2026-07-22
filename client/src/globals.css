@@ -1,0 +1,124 @@
+/* Global styles: design tokens + reset/base. The single app-wide stylesheet.
+   Component-specific styles live in each component's own .css file. */
+
+/* ===========================================================================
+   Design tokens — Lackluster Mint (from the VS Code theme of the same name)
+   plus JetBrains Mono. Single source of truth for color and type; components
+   reference these variables, not raw hex values.
+   =========================================================================== */
+
+:root {
+  /* --- Raw palette (Lackluster Mint) --- */
+  --ll-black: #080808;
+  --ll-bg: #191919;
+  --ll-surface: #2a2a2a;
+  --ll-border: #444444;
+  --ll-border-strong: #555555;
+  --ll-muted: #7a7a7a;
+  --ll-fg-dim: #aaaaaa;
+  --ll-fg: #cccccc;
+  --ll-mint-bright: #deeeed;
+  --ll-slate: #708090; /* signature accent */
+  --ll-mint: #789978; /* the "Mint" green */
+  --ll-yellow: #abab77;
+  --ll-blue: #7788aa;
+  --ll-peach: #ffaa88;
+  --ll-red: #d70000;
+
+  /* --- Semantic tokens (use these in components) --- */
+  --color-bg: var(--ll-bg);
+  --color-surface: var(--ll-surface);
+  --color-border: var(--ll-border);
+  --color-border-strong: var(--ll-border-strong);
+
+  --color-text: var(--ll-fg);
+  --color-text-muted: var(--ll-muted);
+  --color-text-dim: var(--ll-fg-dim);
+  --color-text-bright: var(--ll-mint-bright);
+
+  --color-primary: var(--ll-slate);
+  --color-primary-contrast: var(--ll-black);
+  --color-accent: var(--ll-mint);
+  --color-success: var(--ll-mint);
+  --color-warning: var(--ll-peach);
+  --color-danger: var(--ll-red);
+
+  --color-focus-ring: var(--ll-slate);
+
+  /* --- Typography --- */
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  /* --- Spacing scale --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* --- Radii --- */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+
+  /* --- Motion --- */
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* --- Elevation (layered, low-opacity — see CLAUDE.md) --- */
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.55),
+    0 1px 0 color-mix(in srgb, var(--ll-fg) 4%, transparent) inset;
+}
+
+/* ===========================================================================
+   Reset / base
+   =========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+:where(a) {
+  color: var(--color-accent);
+}
+
+:where(button, input, select, textarea) {
+  font: inherit;
+}
+
+:where(:focus-visible) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Respect users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
