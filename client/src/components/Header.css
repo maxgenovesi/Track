@@ -1,20 +1,43 @@
-/* Floating, glass-style header. Quiet Obsidian aesthetic: muted mono type,
-   subtle surfaces, one accent moment (mint focus glow on the search). */
+/* Home masthead: logo above a single quiet nav, centered in the viewport.
+   Quiet Obsidian aesthetic — muted mono type, a subtle glass surface, one accent
+   moment (slate focus glow on the search). */
 
-.header {
-  position: fixed;
-  top: var(--space-4);
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1100px, calc(100% - var(--space-5)));
-  z-index: 50;
+.masthead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  width: min(1100px, 100%);
+  animation: masthead-in var(--dur) var(--ease) both;
 }
 
-.header__bar {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+@keyframes masthead-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* --- Logo / wordmark ---
+   The one loud element: oversized, tracked-out mono. Swap for an <img> logo
+   here when the asset lands. */
+.masthead__brand {
+  font-family: var(--font-display);
+  color: var(--color-text-bright);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* --- Nav pill --- */
+.masthead__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  max-width: 100%;
   padding: var(--space-2) var(--space-3);
   background: color-mix(in srgb, var(--color-surface) 76%, transparent);
   backdrop-filter: blur(14px) saturate(1.1);
@@ -24,24 +47,9 @@
   box-shadow: var(--shadow);
 }
 
-/* --- Brand --- */
-.header__brand {
-  justify-self: start;
-  color: var(--color-text-bright);
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  text-decoration: none;
-  /* offset the trailing letter-spacing so the mark optically hugs the left */
-  margin-left: var(--space-2);
-  padding-right: 0.2em;
-}
-
-/* --- Search (centered in the bar) --- */
-.header__search {
-  justify-self: center;
-  width: clamp(200px, 34vw, 460px);
+/* --- Search --- */
+.masthead__search {
+  width: clamp(200px, 34vw, 420px);
   min-width: 0;
   display: flex;
   align-items: center;
@@ -56,13 +64,13 @@
     background var(--dur) var(--ease);
 }
 
-.header__search:focus-within {
+.masthead__search:focus-within {
   border-color: var(--color-primary);
   background: color-mix(in srgb, var(--color-bg) 80%, transparent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 
-.header__search input {
+.masthead__search input {
   flex: 1;
   min-width: 0;
   border: none;
@@ -71,11 +79,11 @@
   outline: none;
 }
 
-.header__search input::placeholder {
+.masthead__search input::placeholder {
   color: var(--color-text-muted);
 }
 
-.header__kbd {
+.masthead__kbd {
   flex: none;
   font-size: 0.72rem;
   color: var(--color-text-muted);
@@ -84,15 +92,14 @@
   border-radius: var(--radius-sm);
 }
 
-/* --- Right-side nav --- */
-.header__nav {
+/* --- Links --- */
+.masthead__links {
   display: flex;
   align-items: center;
   gap: var(--space-1);
-  justify-self: end;
 }
 
-.header__link {
+.masthead__link {
   color: var(--color-text-muted);
   text-decoration: none;
   padding: 6px var(--space-3);
@@ -102,12 +109,12 @@
     background var(--dur) var(--ease);
 }
 
-.header__link:hover {
+.masthead__link:hover {
   color: var(--color-text-bright);
   background: color-mix(in srgb, var(--ll-fg) 8%, transparent);
 }
 
-.header__login {
+.masthead__login {
   margin-left: var(--space-2);
   padding: 6px var(--space-4);
   font-weight: 500;
@@ -121,28 +128,22 @@
     border-color var(--dur) var(--ease);
 }
 
-.header__login:hover {
+.masthead__login:hover {
   background: var(--color-text);
   border-color: var(--color-text);
 }
 
-.header__login:active {
+.masthead__login:active {
   transform: translateY(1px);
 }
 
-/* --- Small screens: shed the least-essential bits, keep it usable --- */
-@media (max-width: 640px) {
-  .header__kbd,
-  .header__link {
+/* --- Small screens: let the pill wrap, shed the kbd hint --- */
+@media (max-width: 560px) {
+  .masthead__kbd {
     display: none;
   }
 
-  .header__bar {
-    grid-template-columns: auto 1fr auto;
-    gap: var(--space-2);
-  }
-
-  .header__search {
-    width: auto;
+  .masthead__search {
+    width: min(80vw, 420px);
   }
 }

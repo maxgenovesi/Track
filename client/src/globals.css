@@ -48,6 +48,8 @@
   /* --- Typography --- */
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
     Consolas, monospace;
+  /* Display face — the logo/wordmark only. Mono stays the UI identity. */
+  --font-display: "In A Rush", var(--font-mono);
 
   /* --- Spacing scale --- */
   --space-1: 4px;
@@ -70,6 +72,20 @@
   /* --- Elevation (layered, low-opacity — see CLAUDE.md) --- */
   --shadow: 0 10px 34px rgba(0, 0, 0, 0.55),
     0 1px 0 color-mix(in srgb, var(--ll-fg) 4%, transparent) inset;
+}
+
+/* ===========================================================================
+   Custom faces (self-hosted; imported/bundled from src/assets)
+   =========================================================================== */
+
+@font-face {
+  font-family: "In A Rush";
+  src:
+    url("./assets/fonts/InARush-Regular.ttf") format("truetype"),
+    url("./assets/fonts/InARush-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* ===========================================================================

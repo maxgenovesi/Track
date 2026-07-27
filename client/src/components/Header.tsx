@@ -7,13 +7,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="header">
-        <nav className="header__bar" aria-label="Primary">
-          <a className="header__brand" href="/">
-            Track
-          </a>
+      <div className="masthead">
+        {/* Logo. Swap this wordmark for an <img> when the logo asset lands. */}
+        <a className="masthead__brand" href="/" aria-label="Track — home">
+          Track
+        </a>
 
-          <div className="header__search">
+        <nav className="masthead__nav" aria-label="Primary">
+          <div className="masthead__search">
             <svg
               width="16"
               height="16"
@@ -33,28 +34,28 @@ export default function Header() {
               placeholder="Search tasks, projects, pages…"
               aria-label="Search"
             />
-            <kbd className="header__kbd" aria-hidden="true">
+            <kbd className="masthead__kbd" aria-hidden="true">
               ⌘K
             </kbd>
           </div>
 
-          <div className="header__nav">
-            <a className="header__link" href="/docs">
+          <div className="masthead__links">
+            <a className="masthead__link" href="/docs">
               Docs
             </a>
-            <a className="header__link" href="/contact">
+            <a className="masthead__link" href="/contact">
               Contact
             </a>
             <button
               type="button"
-              className="header__login"
+              className="masthead__login"
               onClick={() => setAuthOpen(true)}
             >
               Log in
             </button>
           </div>
         </nav>
-      </header>
+      </div>
 
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </>
