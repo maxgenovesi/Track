@@ -51,9 +51,98 @@
   color: var(--color-text-bright);
 }
 
-.modal__note {
-  margin-top: var(--space-2);
+/* --- Form --- */
+.modal__form {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Uppercase, tracked-out mono label — the house caption style. */
+.modal__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
-  font-size: 0.875rem;
-  line-height: 1.6;
+}
+
+.modal__field input {
+  padding: 9px var(--space-3);
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+/* Match the masthead search: slate border + soft slate glow on focus. */
+.modal__field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.modal__error {
+  color: var(--color-warning);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* The one accent moment: slate primary, black text. */
+.modal__submit {
+  margin-top: var(--space-1);
+  padding: 10px var(--space-4);
+  font-weight: 700;
+  color: var(--color-primary-contrast);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.modal__submit:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-primary) 88%, white);
+  border-color: color-mix(in srgb, var(--color-primary) 88%, white);
+}
+
+.modal__submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.modal__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Quiet text button to toggle sign-in / sign-up. */
+.modal__switch {
+  margin-top: var(--space-4);
+  width: 100%;
+  padding: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease);
+}
+
+.modal__switch:hover {
+  color: var(--color-text-bright);
 }

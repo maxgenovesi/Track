@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { AuthModal } from './AuthModal'
+import { useAuth } from '../lib/auth'
+import { supabase } from '../lib/supabase'
 import './Header.css'
 
 export default function Header() {
   const [authOpen, setAuthOpen] = useState(false)
+  const { session } = useAuth()
 
   return (
     <>
@@ -46,13 +49,23 @@ export default function Header() {
             <a className="masthead__link" href="/contact">
               Contact
             </a>
-            <button
-              type="button"
-              className="masthead__login"
-              onClick={() => setAuthOpen(true)}
-            >
-              Log in
-            </button>
+            {session ? (
+              <button
+                type="button"
+                className="masthead__login"
+                onClick={() => supabase.auth.signOut()}
+              >
+                Log out
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="masthead__login"
+                onClick={() => setAuthOpen(true)}
+              >
+                Log in
+              </button>
+            )}
           </div>
         </nav>
       </div>
